@@ -1,4 +1,3 @@
-import { IMutableList } from "../core/collections/lists/IMutableList";
 import { println } from "../core/Println";
 import { IHaveChildren } from "./IHaveChildren";
 import { Iterator } from "./Iterator";
@@ -14,10 +13,6 @@ class Folder implements IHaveChildren<Folder> {
   }
   getChildren(): Folder[] {
     return this.children;
-  }
-
-  getTempChildren(): IMutableList<Folder> {
-    throw new Error("Method not implemented.");
   }
 }
 
