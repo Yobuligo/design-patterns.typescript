@@ -1,14 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var Functions_1 = require("../core/collections/Functions");
 var Println_1 = require("../core/Println");
 var Iterator_1 = require("./Iterator");
 var Folder = /** @class */ (function () {
     function Folder(name) {
         this.name = name;
-        this.children = [];
+        this.children = (0, Functions_1.mutableListOf)();
     }
     Folder.prototype.addChild = function (child) {
-        this.children.push(child);
+        this.children.add(child);
         return this;
     };
     Folder.prototype.getChildren = function () {

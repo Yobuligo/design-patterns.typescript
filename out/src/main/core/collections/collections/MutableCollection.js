@@ -35,6 +35,23 @@ var MutableCollection = /** @class */ (function (_super) {
         (_a = this.elements).push.apply(_a, elements);
         this._size += elements.length;
     };
+    MutableCollection.prototype.addList = function (index, elements) {
+        var _this = this;
+        if (index !== undefined && typeof index == "number") {
+            var newList_1 = this.elements.slice(0, index);
+            elements.forEach(function (element) {
+                newList_1.push(element);
+            });
+            newList_1.push.apply(newList_1, this.elements.slice(index + 1, this.elements.length));
+            this.elements = newList_1;
+            this._size += elements.size;
+        }
+        else {
+            elements.forEach(function (element) {
+                _this.add(element);
+            });
+        }
+    };
     MutableCollection.prototype.remove = function (element) {
         if (!this.contains(element)) {
             return;

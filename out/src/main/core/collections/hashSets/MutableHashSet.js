@@ -35,6 +35,9 @@ var MutableHashSet = /** @class */ (function (_super) {
             this.addElement(element);
         }
     };
+    MutableHashSet.prototype.addList = function (index, elements) {
+        throw new Error();
+    };
     MutableHashSet.prototype.remove = function (element) {
         if (!this.contains(element)) {
             return;

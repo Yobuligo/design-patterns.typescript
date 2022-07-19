@@ -1,4 +1,5 @@
 import { TIndex } from "../collections/Type";
+import { IList } from "../lists/IList";
 import { HashSet } from "./HashSet";
 import { IMutableHashSet } from "./IMutableHashSet";
 
@@ -14,6 +15,12 @@ export class MutableHashSet<T>
     for (const element of elements) {
       this.addElement(element);
     }
+  }
+
+  addList(elements: IList<T>): void;
+  addList(index: number, elements: IList<T>): void;
+  addList(index: unknown, elements?: IList<T>): void {
+    throw new Error()
   }
 
   remove(element: T): void {

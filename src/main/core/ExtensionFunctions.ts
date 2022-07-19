@@ -1,3 +1,5 @@
+import { repeat } from "./Repeat";
+
 export {};
 
 declare global {
@@ -6,7 +8,8 @@ declare global {
   }
 
   interface String {
-    ifNotEmpty(block: (value: string) => void): void;    
+    ifNotEmpty(block: (value: string) => void): void;
+    repeat(times: number): string;
   }
 
   interface Boolean {
@@ -23,6 +26,22 @@ Array.prototype.apply = function (block) {
 String.prototype.ifNotEmpty = function (block: (value: string) => void): void {
   if (this != "") {
     block(this);
+  }
+};
+
+String.prototype.repeat = function (times: number): string {
+  switch (times) {
+    case 0:
+      return "";
+    case 1:
+      return this;
+    default: {
+      let result = "";
+      repeat(times, () => {
+        result += this;
+      });
+      return result;
+    }
   }
 };
 

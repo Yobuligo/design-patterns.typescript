@@ -1,17 +1,20 @@
+import { mutableListOf } from "../core/collections/Functions";
+import { IList } from "../core/collections/lists/IList";
 import { println } from "../core/Println";
 import { IHaveChildren } from "./IHaveChildren";
 import { Iterator } from "./Iterator";
 
 class Folder implements IHaveChildren<Folder> {
-  private children: Folder[] = [];
+  private children = mutableListOf<Folder>();
 
   constructor(readonly name: string) {}
 
   addChild(child: Folder): Folder {
-    this.children.push(child);
+    this.children.add(child);
     return this;
   }
-  getChildren(): Folder[] {
+
+  getChildren(): IList<Folder> {
     return this.children;
   }
 }
