@@ -15,5 +15,7 @@ var Multiton = /** @class */ (function () {
     return Multiton;
 }());
 var multitonFirst = Multiton.getInstance("first");
+var multitonFirstBackup = Multiton.getInstance("first");
 var multitonSecond = Multiton.getInstance("second");
+var multitonSecondBackup = Multiton.getInstance("second");
 //# sourceMappingURL=app.js.map

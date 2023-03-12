@@ -14,4 +14,6 @@ class Multiton {
 }
 
 const multitonFirst = Multiton.getInstance("first");
+const multitonFirstBackup = Multiton.getInstance("first");
 const multitonSecond = Multiton.getInstance("second");
+const multitonSecondBackup = Multiton.getInstance("second");
