@@ -1,0 +1,19 @@
+{
+  "name": "design-patterns.typescript",
+  "version": "1.0.0",
+  "description": "Design Pattern TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yobuligo/design-patterns.typescript.git"
+  },
+  "author": "Yobuligo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yobuligo/design-patterns.typescript/issues"
+  },
+  "homepage": "https://github.com/Yobuligo/design-patterns.typescript#readme"
+}
