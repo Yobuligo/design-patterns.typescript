@@ -1,2 +1,2 @@
-interface ICommand {
+declare namespace Command {
 }

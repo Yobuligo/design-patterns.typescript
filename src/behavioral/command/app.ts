@@ -1,3 +1,5 @@
-interface ICommand{
-    
+namespace Command {
+  interface ICommand {
+    execute(): void;
+  }
 }
