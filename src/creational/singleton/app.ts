@@ -1,14 +1,16 @@
-class Singleton {
-  private static instance: Singleton;
+namespace Singleton {
+  class Singleton {
+    private static instance: Singleton;
 
-  private constructor() {}
+    private constructor() {}
 
-  public static getInstance(): Singleton {
-    if (!this.instance) {
-      this.instance = new Singleton();
+    public static getInstance(): Singleton {
+      if (!this.instance) {
+        this.instance = new Singleton();
+      }
+      return this.instance;
     }
-    return this.instance;
   }
-}
 
-const singleton = Singleton.getInstance();
+  const singleton = Singleton.getInstance();
+}
