@@ -31,6 +31,13 @@ namespace Stack {
     }
   }
 
-  const stack = new Stack()
-  stack.
+  const stack = new Stack<string>();
+  console.log(stack.peek());
+
+  stack.push("first");
+  stack.push("second");
+  console.log(stack.peek());
+
+  stack.pop();
+  console.log(stack.peek());
 }

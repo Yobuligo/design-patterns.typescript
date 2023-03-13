@@ -24,7 +24,11 @@ var Stack;
         return Stack;
     }());
     var stack = new Stack();
-    stack.
-    ;
+    console.log(stack.peek());
+    stack.push("first");
+    stack.push("second");
+    console.log(stack.peek());
+    stack.pop();
+    console.log(stack.peek());
 })(Stack || (Stack = {}));
 //# sourceMappingURL=app.js.map
