@@ -1,1 +1,2 @@
-declare namespace Observer { }
+declare namespace Observer {
+}
