@@ -34,6 +34,7 @@ namespace ChainOfResponsibility {
 
   class Subtraction implements IHandler {
     constructor(public follower: IHandler | undefined) {}
+    
     handle(request: IRequest): number | undefined {
       if (request.operation === "-") {
         return request.value1 - request.value2;
