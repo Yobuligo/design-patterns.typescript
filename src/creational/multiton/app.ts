@@ -5,11 +5,12 @@ namespace Multiton {
     private constructor(public key: string) {}
 
     public static getInstance(key: string): Multiton {
-      let instance = this.instances.get(key);
-      if (!instance) {
-        instance = new Multiton(key);
-        this.instances.set(key, instance);
-      }
+      return this.instances.get(key) ?? this.create(key);
+    }
+
+    private static create(key: string): Multiton {
+      const instance = new Multiton(key);
+      this.instances.set(key, instance);
       return instance;
     }
   }

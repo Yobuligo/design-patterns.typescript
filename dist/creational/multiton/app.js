@@ -6,11 +6,12 @@ var Multiton;
             this.key = key;
         }
         Multiton.getInstance = function (key) {
-            var instance = this.instances.get(key);
-            if (!instance) {
-                instance = new Multiton(key);
-                this.instances.set(key, instance);
-            }
+            var _a;
+            return (_a = this.instances.get(key)) !== null && _a !== void 0 ? _a : this.create(key);
+        };
+        Multiton.create = function (key) {
+            var instance = new Multiton(key);
+            this.instances.set(key, instance);
             return instance;
         };
         Multiton.instances = new Map();

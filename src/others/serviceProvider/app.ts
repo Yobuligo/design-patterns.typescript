@@ -10,8 +10,8 @@ namespace ServiceProvider {
     ): void;
   }
 
-  class ServiceDefinition<T> {
-    _instance: T = {} as T;
+  class ServiceDefinition<TService> {
+    readonly _instance: TService = {} as TService;
   }
 
   class ServiceProvider implements IServiceProvider {

@@ -30,18 +30,18 @@ var Strategy;
         };
         return SpacePrinter;
     }());
-    var TextPrinter = /** @class */ (function () {
-        function TextPrinter(printer) {
+    var TextOutput = /** @class */ (function () {
+        function TextOutput(printer) {
             this.printer = printer;
         }
-        TextPrinter.prototype.print = function (message) {
+        TextOutput.prototype.print = function (message) {
             this.printer.print(message);
         };
-        return TextPrinter;
+        return TextOutput;
     }());
-    var textPrinter = new TextPrinter(new BasePrinter());
-    textPrinter.print("Test message");
-    textPrinter.printer = new SpacePrinter();
-    textPrinter.print("Test message");
+    var textOutput = new TextOutput(new BasePrinter());
+    textOutput.print("Test message");
+    textOutput.printer = new SpacePrinter();
+    textOutput.print("Test message");
 })(Strategy || (Strategy = {}));
 //# sourceMappingURL=app.js.map

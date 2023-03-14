@@ -9,9 +9,11 @@ namespace Lazy {
     constructor(private initializer: () => T) {}
 
     get instance(): T {
-      if (!this._instance) {
-        this._instance = this.initializer();
-      }
+      return this._instance ?? this.create();
+    }
+
+    private create(): T {
+      this._instance = this.initializer();
       return this._instance;
     }
   }
@@ -20,9 +22,6 @@ namespace Lazy {
     title = "Test";
   }
 
-  const lazyTest = new Lazy(() => {
-    return new Test();
-  });
-
+  const lazyTest = new Lazy(() => new Test());
   console.log(lazyTest.instance.title);
 }

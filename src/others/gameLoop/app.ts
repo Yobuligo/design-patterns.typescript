@@ -41,17 +41,22 @@ namespace GameLoop {
   class ComponentA implements IComponent {
     private value: number = 0;
 
+    constructor(private name: string) {}
+
     render(): void {
-      console.log(`new value is '${this.value}'`);
+      console.log(
+        `Render component '${this.name}', new value is '${this.value}'`
+      );
     }
+
     update(): void {
       this.value++;
     }
   }
 
   const game = new Game();
-  game.addComponent(new ComponentA());
-  game.addComponent(new ComponentA());
-  game.addComponent(new ComponentA());
+  game.addComponent(new ComponentA("button"));
+  game.addComponent(new ComponentA("table"));
+  game.addComponent(new ComponentA("input"));
   game.run();
 }

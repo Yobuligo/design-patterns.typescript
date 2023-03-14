@@ -7,14 +7,16 @@ var Lazy;
         }
         Object.defineProperty(Lazy.prototype, "instance", {
             get: function () {
-                if (!this._instance) {
-                    this._instance = this.initializer();
-                }
-                return this._instance;
+                var _a;
+                return (_a = this._instance) !== null && _a !== void 0 ? _a : this.create();
             },
             enumerable: false,
             configurable: true
         });
+        Lazy.prototype.create = function () {
+            this._instance = this.initializer();
+            return this._instance;
+        };
         return Lazy;
     }());
     var Test = /** @class */ (function () {
@@ -23,9 +25,7 @@ var Lazy;
         }
         return Test;
     }());
-    var lazyTest = new Lazy(function () {
-        return new Test();
-    });
+    var lazyTest = new Lazy(function () { return new Test(); });
     console.log(lazyTest.instance.title);
 })(Lazy || (Lazy = {}));
 //# sourceMappingURL=app.js.map

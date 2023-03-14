@@ -27,7 +27,7 @@ namespace Strategy {
     }
   }
 
-  class TextPrinter {
+  class TextOutput {
     constructor(public printer: IPrinter) {}
 
     print(message: string) {
@@ -35,8 +35,8 @@ namespace Strategy {
     }
   }
 
-  const textPrinter = new TextPrinter(new BasePrinter());
-  textPrinter.print("Test message");
-  textPrinter.printer = new SpacePrinter();
-  textPrinter.print("Test message");
+  const textOutput = new TextOutput(new BasePrinter());
+  textOutput.print("Test message");
+  textOutput.printer = new SpacePrinter();
+  textOutput.print("Test message");
 }

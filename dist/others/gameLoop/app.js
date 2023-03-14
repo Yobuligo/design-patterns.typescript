@@ -31,11 +31,12 @@ var GameLoop;
         return Game;
     }());
     var ComponentA = /** @class */ (function () {
-        function ComponentA() {
+        function ComponentA(name) {
+            this.name = name;
             this.value = 0;
         }
         ComponentA.prototype.render = function () {
-            console.log("new value is '".concat(this.value, "'"));
+            console.log("Render component '".concat(this.name, "', new value is '").concat(this.value, "'"));
         };
         ComponentA.prototype.update = function () {
             this.value++;
@@ -43,9 +44,9 @@ var GameLoop;
         return ComponentA;
     }());
     var game = new Game();
-    game.addComponent(new ComponentA());
-    game.addComponent(new ComponentA());
-    game.addComponent(new ComponentA());
+    game.addComponent(new ComponentA("button"));
+    game.addComponent(new ComponentA("table"));
+    game.addComponent(new ComponentA("input"));
     game.run();
 })(GameLoop || (GameLoop = {}));
 //# sourceMappingURL=app.js.map
