@@ -18,23 +18,14 @@ namespace DataAccessObject {
     private dataObjects: IDataObject[] = [];
 
     findById(id: string): IDataObject | undefined {
-      for (const dataObject of this.dataObjects) {
-        if (dataObject.id === id) {
-          return dataObject;
-        }
-      }
-      return undefined;
+      return this.dataObjects.find((dataObject) => dataObject.id === id);
     }
 
     remove(dataObject: IDataObject): boolean {
       const index = this.dataObjects.indexOf(dataObject);
-      if (index === -1) {
-        return false;
-      }
-
-      this.dataObjects.splice(index, 1);
-      return true;
+      return this.dataObjects.splice(index, 1) !== undefined;
     }
+    
     save(dataObject: IDataObject): void {
       this.dataObjects.push(dataObject);
     }

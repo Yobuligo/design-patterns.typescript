@@ -5,9 +5,11 @@ var Singleton;
         function Singleton() {
         }
         Singleton.getInstance = function () {
-            if (!this.instance) {
-                this.instance = new Singleton();
-            }
+            var _a;
+            return (_a = this.instance) !== null && _a !== void 0 ? _a : this.create();
+        };
+        Singleton.create = function () {
+            this.instance = new Singleton();
             return this.instance;
         };
         return Singleton;

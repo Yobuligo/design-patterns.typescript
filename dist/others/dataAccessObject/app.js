@@ -13,21 +13,11 @@ var DataAccessObject;
             this.dataObjects = [];
         }
         DataAccessObject.prototype.findById = function (id) {
-            for (var _i = 0, _a = this.dataObjects; _i < _a.length; _i++) {
-                var dataObject_1 = _a[_i];
-                if (dataObject_1.id === id) {
-                    return dataObject_1;
-                }
-            }
-            return undefined;
+            return this.dataObjects.find(function (dataObject) { return dataObject.id === id; });
         };
         DataAccessObject.prototype.remove = function (dataObject) {
             var index = this.dataObjects.indexOf(dataObject);
-            if (index === -1) {
-                return false;
-            }
-            this.dataObjects.splice(index, 1);
-            return true;
+            return this.dataObjects.splice(index, 1) !== undefined;
         };
         DataAccessObject.prototype.save = function (dataObject) {
             this.dataObjects.push(dataObject);

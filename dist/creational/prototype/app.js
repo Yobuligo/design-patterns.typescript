@@ -16,14 +16,16 @@ var Prototype;
         };
         Object.defineProperty(Cell.prototype, "cellCode", {
             get: function () {
-                if (!this._cellCode) {
-                    this._cellCode = new Date().getTime() * Math.random() * 10000;
-                }
-                return this._cellCode;
+                var _a;
+                return (_a = this._cellCode) !== null && _a !== void 0 ? _a : this.createCellCode();
             },
             enumerable: false,
             configurable: true
         });
+        Cell.prototype.createCellCode = function () {
+            this._cellCode = new Date().getTime() * Math.random() * 10000;
+            return this._cellCode;
+        };
         return Cell;
     }());
     var cloneCell = function (cell) {

@@ -5,9 +5,11 @@ namespace Singleton {
     private constructor() {}
 
     public static getInstance(): Singleton {
-      if (!this.instance) {
-        this.instance = new Singleton();
-      }
+      return this.instance ?? this.create();
+    }
+
+    private static create() {
+      this.instance = new Singleton();
       return this.instance;
     }
   }
