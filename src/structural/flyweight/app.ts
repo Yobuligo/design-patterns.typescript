@@ -31,12 +31,21 @@ namespace FlyWeight {
     }
 
     fetch(type: new () => any): IClassMeta {
-      return this.classMetas.get(type) ?? this.create(type);
+      return this.find(type) ?? this.create(type);
+    }
+
+    private find(type: new () => any): IClassMeta | undefined {
+      const classMeta = this.classMetas.get(type);
+      if (classMeta) {
+        console.log(`Fetch class meta from cache`);
+      }
+      return classMeta;
     }
 
     private create(type: new () => any): IClassMeta {
       const classMeta = new ClassMeta(type);
       this.classMetas.set(type, classMeta);
+      console.log(`Fetch class meta by initialization`);
       return classMeta;
     }
 

@@ -24,11 +24,19 @@ var FlyWeight;
         };
         ClassMetaRepo.prototype.fetch = function (type) {
             var _a;
-            return (_a = this.classMetas.get(type)) !== null && _a !== void 0 ? _a : this.create(type);
+            return (_a = this.find(type)) !== null && _a !== void 0 ? _a : this.create(type);
+        };
+        ClassMetaRepo.prototype.find = function (type) {
+            var classMeta = this.classMetas.get(type);
+            if (classMeta) {
+                console.log("Fetch class meta from cache");
+            }
+            return classMeta;
         };
         ClassMetaRepo.prototype.create = function (type) {
             var classMeta = new ClassMeta(type);
             this.classMetas.set(type, classMeta);
+            console.log("Fetch class meta by initialization");
             return classMeta;
         };
         ClassMetaRepo.createInstance = function () {
