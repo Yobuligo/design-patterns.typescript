@@ -32,13 +32,13 @@ namespace Bridge {
 
   class Warrior extends Specialization {}
 
-  class Mage extends Specialization {}
+  class Wizard extends Specialization {}
 
   const warrior = new Warrior(new Bow());
   warrior.attack();
   warrior.weapon = new Sword();
   warrior.attack();
 
-  const mage = new Mage(new Bow());
-  mage.attack();
+  const wizard = new Wizard(new Bow());
+  wizard.attack();
 }
