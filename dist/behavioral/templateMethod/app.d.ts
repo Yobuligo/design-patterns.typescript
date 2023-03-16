@@ -1,1 +1,2 @@
-declare namespace TemplateMethod { }
+declare namespace TemplateMethod {
+}
