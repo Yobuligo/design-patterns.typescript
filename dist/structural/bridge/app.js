@@ -55,18 +55,18 @@ var Bridge;
         }
         return Warrior;
     }(Specialization));
-    var Mage = /** @class */ (function (_super) {
-        __extends(Mage, _super);
-        function Mage() {
+    var Wizard = /** @class */ (function (_super) {
+        __extends(Wizard, _super);
+        function Wizard() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        return Mage;
+        return Wizard;
     }(Specialization));
     var warrior = new Warrior(new Bow());
     warrior.attack();
     warrior.weapon = new Sword();
     warrior.attack();
-    var mage = new Mage(new Bow());
-    mage.attack();
+    var wizard = new Wizard(new Bow());
+    wizard.attack();
 })(Bridge || (Bridge = {}));
 //# sourceMappingURL=app.js.map
