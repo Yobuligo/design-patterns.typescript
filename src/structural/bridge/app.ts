@@ -1,33 +1,44 @@
+/**
+ * There are 2 abstract classes with base functionality. Abstract because they are only implemented rudimentary and should be extended to provide more functionality.
+ * In addition:
+ * - these classes should be implemented independently
+ * - one class uses the other.
+ */
 namespace Bridge {
-  interface IPhone {
-    callNumber(phoneNumber: string): void;
+  interface IWeapon {
+    attack(): void;
   }
 
-  interface ICamera {
-    makePicture(): void;
-  }
-
-  class Phone implements IPhone {
-    callNumber(phoneNumber: string): void {
-      console.log(`Call number ${phoneNumber}`);
+  class Sword implements IWeapon {
+    attack(): void {
+      console.log(`with sword Jato`);
     }
   }
 
-  class Camera implements ICamera {
-    makePicture(): void {
-      console.log(`Make picture`);
+  class Bow implements IWeapon {
+    attack(): void {
+      console.log(`with bow Apollo`);
     }
   }
 
-  class Smartphone extends Phone implements ICamera {
-    private camera = new Camera();
+  abstract class Specialization {
+    constructor(public weapon: IWeapon) {}
 
-    makePicture(): void {
-      this.camera.makePicture();
+    attack(): void {
+      console.log(`The ${this.constructor.name} attacks:`);
+      this.weapon.attack();
     }
   }
 
-  const smartPhone = new Smartphone();
-  smartPhone.callNumber("+49 151 123456789");
-  smartPhone.makePicture();
+  class Warrior extends Specialization {}
+
+  class Mage extends Specialization {}
+
+  const warrior = new Warrior(new Bow());
+  warrior.attack();
+  warrior.weapon = new Sword();
+  warrior.attack();
+
+  const mage = new Mage(new Bow());
+  mage.attack();
 }

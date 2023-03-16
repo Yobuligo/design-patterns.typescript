@@ -14,38 +14,57 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+/**
+ * There are 2 abstract classes, which should be extended to provide more functionality.
+ * These classes should be implemented independently while one should use the other one.
+ */
 var Bridge;
 (function (Bridge) {
-    var Phone = /** @class */ (function () {
-        function Phone() {
+    var Sword = /** @class */ (function () {
+        function Sword() {
         }
-        Phone.prototype.callNumber = function (phoneNumber) {
-            console.log("Call number ".concat(phoneNumber));
+        Sword.prototype.attack = function () {
+            console.log("with sword Jato");
         };
-        return Phone;
+        return Sword;
     }());
-    var Camera = /** @class */ (function () {
-        function Camera() {
+    var Bow = /** @class */ (function () {
+        function Bow() {
         }
-        Camera.prototype.makePicture = function () {
-            console.log("Make picture");
+        Bow.prototype.attack = function () {
+            console.log("with bow Apollo");
         };
-        return Camera;
+        return Bow;
     }());
-    var Smartphone = /** @class */ (function (_super) {
-        __extends(Smartphone, _super);
-        function Smartphone() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.camera = new Camera();
-            return _this;
+    var Specialization = /** @class */ (function () {
+        function Specialization(weapon) {
+            this.weapon = weapon;
         }
-        Smartphone.prototype.makePicture = function () {
-            this.camera.makePicture();
+        Specialization.prototype.attack = function () {
+            console.log("The ".concat(this.constructor.name, " attacks:"));
+            this.weapon.attack();
         };
-        return Smartphone;
-    }(Phone));
-    var smartPhone = new Smartphone();
-    smartPhone.callNumber("+49 151 123456789");
-    smartPhone.makePicture();
+        return Specialization;
+    }());
+    var Warrior = /** @class */ (function (_super) {
+        __extends(Warrior, _super);
+        function Warrior() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return Warrior;
+    }(Specialization));
+    var Mage = /** @class */ (function (_super) {
+        __extends(Mage, _super);
+        function Mage() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return Mage;
+    }(Specialization));
+    var warrior = new Warrior(new Bow());
+    warrior.attack();
+    warrior.weapon = new Sword();
+    warrior.attack();
+    var mage = new Mage(new Bow());
+    mage.attack();
 })(Bridge || (Bridge = {}));
 //# sourceMappingURL=app.js.map
