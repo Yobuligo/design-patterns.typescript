@@ -1,1 +1,2 @@
-declare namespace NullObject { }
+declare namespace NullObject {
+}

@@ -15,8 +15,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 /**
- * There are 2 abstract classes, which should be extended to provide more functionality.
- * These classes should be implemented independently while one should use the other one.
+ * There are 2 abstract classes with base functionality. Abstract because they are only implemented rudimentary and should be extended to provide more functionality.
+ * In addition:
+ * - these classes should be implemented independently
+ * - one class uses the other.
  */
 var Bridge;
 (function (Bridge) {
