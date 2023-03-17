@@ -1,1 +1,3 @@
-namespace Mediator {}
+namespace Mediator {
+  // Todo
+}
