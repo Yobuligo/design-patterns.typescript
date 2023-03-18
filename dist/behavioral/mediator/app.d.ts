@@ -1,1 +1,2 @@
-declare namespace Mediator { }
+declare namespace Mediator {
+}
