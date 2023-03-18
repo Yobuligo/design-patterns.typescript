@@ -1,6 +1,6 @@
 namespace Memento {
   /**
-   * The memento object which keeps the state
+   * The memento object which keeps the state (firstname, lastname, age)
    */
   interface IPerson {
     readonly firstname: string;
