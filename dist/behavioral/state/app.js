@@ -17,74 +17,66 @@ var __extends = (this && this.__extends) || (function () {
 var State;
 (function (State_1) {
     var State = /** @class */ (function () {
-        function State(sensor) {
-            this.sensor = sensor;
+        function State(hoover) {
+            this.hoover = hoover;
         }
         return State;
     }());
     var Carpet = /** @class */ (function (_super) {
         __extends(Carpet, _super);
-        function Carpet(sensor) {
-            var _this = _super.call(this, sensor) || this;
-            sensor.hoover.power = 1000;
-            sensor.hoover.useWipe = false;
+        function Carpet(hoover) {
+            var _this = _super.call(this, hoover) || this;
+            hoover.power = 1000;
+            hoover.useWipe = false;
             return _this;
         }
         Carpet.prototype.onCarpet = function () {
             console.log("Already in Carpet mode");
         };
         Carpet.prototype.onTile = function () {
-            this.sensor.state = new Tile(this.sensor);
+            this.hoover.state = new Tile(this.hoover);
         };
         return Carpet;
     }(State));
     var Tile = /** @class */ (function (_super) {
         __extends(Tile, _super);
-        function Tile(sensor) {
-            var _this = _super.call(this, sensor) || this;
-            sensor.hoover.power = 500;
-            sensor.hoover.useWipe = true;
+        function Tile(hoover) {
+            var _this = _super.call(this, hoover) || this;
+            hoover.power = 500;
+            hoover.useWipe = true;
             return _this;
         }
         Tile.prototype.onCarpet = function () {
-            this.sensor.state = new Carpet(this.sensor);
+            this.hoover.state = new Carpet(this.hoover);
         };
         Tile.prototype.onTile = function () {
             console.log("Already in Tile mode");
         };
         return Tile;
     }(State));
-    var Sensor = /** @class */ (function () {
-        function Sensor(hoover) {
-            this.hoover = hoover;
-            this.state = new Carpet(this);
-        }
-        Sensor.prototype.onCarpet = function () {
-            console.log("Switch to carpet mode");
-            this.state.onCarpet();
-        };
-        Sensor.prototype.onTile = function () {
-            console.log("Switch to tile mode");
-            this.state.onTile();
-        };
-        return Sensor;
-    }());
     var Hoover = /** @class */ (function () {
         function Hoover() {
             this.power = 0;
             this.useWipe = false;
+            this.state = new Carpet(this);
         }
+        Hoover.prototype.onCarpet = function () {
+            console.log("Carpet detected, switch to carpet mode");
+            this.state.onCarpet();
+            this.print();
+        };
+        Hoover.prototype.onTile = function () {
+            console.log("Tiles detected, switch to tile mode");
+            this.state.onTile();
+            this.print();
+        };
+        Hoover.prototype.print = function () {
+            console.log("Hoover works now with '".concat(sensor.power, "' W and wipe is '").concat(sensor.useWipe ? "on" : "off", "'"));
+        };
         return Hoover;
     }());
-    var printHoover = function (hoover) {
-        console.log("Hoover works now with '".concat(hoover.power, "' W and wipe is '").concat(hoover.useWipe ? "on" : "off", "'"));
-    };
-    var hoover = new Hoover();
-    var sensor = new Sensor(hoover);
-    printHoover(hoover);
+    var sensor = new Hoover();
     sensor.onCarpet();
-    printHoover(hoover);
     sensor.onTile();
-    printHoover(hoover);
 })(State || (State = {}));
 //# sourceMappingURL=app.js.map

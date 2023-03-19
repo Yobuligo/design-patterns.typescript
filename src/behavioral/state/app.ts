@@ -2,10 +2,6 @@ namespace State {
   interface IHoover {
     power: number;
     useWipe: boolean;
-  }
-
-  interface ISensor {
-    readonly hoover: IHoover;
     state: IState;
     onCarpet(): void;
     onTile(): void;
@@ -17,17 +13,16 @@ namespace State {
   }
 
   abstract class State implements IState {
-    constructor(protected sensor: ISensor) {}
-
+    constructor(protected hoover: IHoover) {}
     abstract onCarpet(): void;
     abstract onTile(): void;
   }
 
   class Carpet extends State {
-    constructor(sensor: ISensor) {
-      super(sensor);
-      sensor.hoover.power = 1000;
-      sensor.hoover.useWipe = false;
+    constructor(hoover: IHoover) {
+      super(hoover);
+      hoover.power = 1000;
+      hoover.useWipe = false;
     }
 
     onCarpet(): void {
@@ -35,19 +30,19 @@ namespace State {
     }
 
     onTile(): void {
-      this.sensor.state = new Tile(this.sensor);
+      this.hoover.state = new Tile(this.hoover);
     }
   }
 
   class Tile extends State {
-    constructor(sensor: ISensor) {
-      super(sensor);
-      sensor.hoover.power = 500;
-      sensor.hoover.useWipe = true;
+    constructor(hoover: IHoover) {
+      super(hoover);
+      hoover.power = 500;
+      hoover.useWipe = true;
     }
 
     onCarpet(): void {
-      this.sensor.state = new Carpet(this.sensor);
+      this.hoover.state = new Carpet(this.hoover);
     }
 
     onTile(): void {
@@ -55,40 +50,33 @@ namespace State {
     }
   }
 
-  class Sensor implements ISensor {
-    public state: IState = new Carpet(this);
-
-    constructor(readonly hoover: IHoover) {}
-
-    onCarpet(): void {
-      console.log(`Switch to carpet mode`);
-      this.state.onCarpet();
-    }
-
-    onTile(): void {
-      console.log(`Switch to tile mode`);
-      this.state.onTile();
-    }
-  }
-
   class Hoover implements IHoover {
     power: number = 0;
     useWipe: boolean = false;
+    public state: IState = new Carpet(this);
+
+    onCarpet(): void {
+      console.log(`Carpet detected, switch to carpet mode`);
+      this.state.onCarpet();
+      this.print();
+    }
+
+    onTile(): void {
+      console.log(`Tiles detected, switch to tile mode`);
+      this.state.onTile();
+      this.print();
+    }
+
+    private print() {
+      console.log(
+        `Hoover works now with '${sensor.power}' W and wipe is '${
+          sensor.useWipe ? "on" : "off"
+        }'`
+      );
+    }
   }
 
-  const printHoover = (hoover: IHoover) => {
-    console.log(
-      `Hoover works now with '${hoover.power}' W and wipe is '${
-        hoover.useWipe ? "on" : "off"
-      }'`
-    );
-  };
-
-  const hoover = new Hoover();
-  const sensor = new Sensor(hoover);
-  printHoover(hoover);
+  const sensor = new Hoover();
   sensor.onCarpet();
-  printHoover(hoover);
   sensor.onTile();
-  printHoover(hoover);
 }
