@@ -26,6 +26,9 @@ var Memento;
         console.log("Lastname is ".concat(personDialog.lastname));
         console.log("Age is ".concat(personDialog.age));
     };
+    /**
+     * The following coding is the caretaker that works with the Originator (PersonDialog) and the Memento (IPerson)
+     */
     var personDialog = new PersonDialog();
     personDialog.firstname = "Stacey";
     personDialog.lastname = "Starfish";
